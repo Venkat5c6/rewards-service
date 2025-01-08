@@ -39,4 +39,21 @@ public class RewardsServiceImplTest {
         Rewards customerRewards = rewardsServiceImpl.getRewardsByCustomerId(1000L);
         Assertions.assertNotNull(customerRewards);
     }
+
+    @Test
+    public void getRewardsByCustomerId_when_TransactionAmount_below_secondRewardLimitTest() throws Exception {
+        final List<Transaction> transactions = new ArrayList<>();
+        final Transaction transaction = new Transaction();
+        transaction.setTransactionId(1L);
+        transaction.setCustomerId(1000L);
+        transaction.setTransactionAmount(70);
+        transaction.setTransactionDate(Timestamp.valueOf(LocalDateTime.now()));
+        transactions.add(transaction);
+        Mockito.when(transactionRepository.findAllByCustomerIdAndTransactionDateBetween(Mockito.anyLong(),
+                                                                                        Mockito.any(),
+                                                                                        Mockito.any()))
+                .thenReturn(transactions);
+        Rewards customerRewards = rewardsServiceImpl.getRewardsByCustomerId(1000L);
+        Assertions.assertNotNull(customerRewards);
+    }
 }

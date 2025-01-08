@@ -6,14 +6,18 @@
 - The package name is structured as com.retailer.rewards
 - Exception is thrown if customer does not exists.
 - H2 in-memory database to store the information.
-- Set the H2 db to classpath and run it . change the db settings in application.properties file.
-- Open H2 db console after your project up on running. Open below URL in browser and connect with the username/password.
+- Set the H2 db to classpath and run it . change the H2 db settings in application.properties file.
+- Open H2 db console after your project up on running on port 8081. Open below URL in browser and connect with the username/password.
 - http://localhost:8081/h2
-- Do run the scrip.sql on H2 in memory DB to prepare the test data.
+- Do run the scrip.sql i.e. src/main/resources/scrip.sql on H2 in memory DB to prepare the test data.
 
-
+- Download the postman into your local machine and install. 
+- Open postman and hit the below endpoints.
 ```
  http://localhost:8081/customers/{customerId}/rewards
+ 
+ http://localhost:8081/customers/1001/rewards
+ http://localhost:8081/customers/1002/rewards
  http://localhost:8081/customers/1003/rewards
 ```
 

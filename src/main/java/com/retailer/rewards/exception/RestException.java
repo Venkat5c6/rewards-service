@@ -2,6 +2,11 @@ package com.retailer.rewards.exception;
 
 import org.springframework.http.HttpStatus;
 
+/**
+ * RestException class is contains the exception details
+ *
+ * @author Venkat
+ */
 public class RestException extends RuntimeException {
     private static final long serialVersionUID = -7105919687668262163L;
     private String referenceId;

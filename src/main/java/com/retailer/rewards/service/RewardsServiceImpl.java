@@ -2,6 +2,7 @@ package com.retailer.rewards.service;
 
 import com.retailer.rewards.constants.Constants;
 import com.retailer.rewards.entity.Transaction;
+import com.retailer.rewards.exception.CustomerNotFoundException;
 import com.retailer.rewards.model.Rewards;
 import com.retailer.rewards.repository.TransactionRepository;
 import java.sql.Timestamp;
@@ -12,6 +13,11 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * RewardsServiceImpl class calculating RewardPoints of each customer.
+ *
+ * @author Venkat
+ */
 @Service
 public class RewardsServiceImpl implements RewardsService {
 
@@ -19,6 +25,12 @@ public class RewardsServiceImpl implements RewardsService {
     @Autowired
     TransactionRepository transactionRepository;
 
+    /**
+     * getRewardsByCustomerId() calculating RewardPoints of each customer for last three months transaction date.
+     *
+     * @param customerId is the unique identifier of each customer
+     * @return Rewards Points for last three months transaction of customer id.
+     */
     public Rewards getRewardsByCustomerId(Long customerId) {
 
         Timestamp lastMonthTimestamp = getDateBasedOnOffSetDays(Constants.daysInMonths);
@@ -64,11 +76,11 @@ public class RewardsServiceImpl implements RewardsService {
                 t.getTransactionAmount() <= Constants.secondRewardLimit) {
             return Math.round(t.getTransactionAmount() - Constants.firstRewardLimit);
         } else if (t.getTransactionAmount() > Constants.secondRewardLimit) {
-			return Math.round(t.getTransactionAmount() - Constants.secondRewardLimit) * 2
-					+ (Constants.secondRewardLimit - Constants.firstRewardLimit);
-		} else {
-			return 0L;
-		}
+            return Math.round(t.getTransactionAmount() - Constants.secondRewardLimit) * 2
+                    + (Constants.secondRewardLimit - Constants.firstRewardLimit);
+        } else {
+            return 0L;
+        }
 
     }
 

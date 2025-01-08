@@ -8,6 +8,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * Customer entity class representing Customer table name in database.
+ *
+ * @author Venkat
+ */
 @Entity
 @Table(name = "CUSTOMER")
 public class Customer {

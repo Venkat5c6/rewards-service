@@ -8,16 +8,20 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.sql.Timestamp;
 
-
+/**
+ * Transaction entity class representing Transaction table name in database.
+ *
+ * @author Venkat
+ */
 @Entity
 @Table(name = "TRANSACTION")
 public class Transaction {
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TRANSACTION_ID")
     private Long transactionId;
 
-    @Column(name="CUSTOMER_ID")
+    @Column(name = "CUSTOMER_ID")
     private Long customerId;
 
     @Column(name = "TRANSACTION_DATE")
@@ -28,14 +32,14 @@ public class Transaction {
 
 
     public Long getTransactionId() {
-		return transactionId;
-	}
+        return transactionId;
+    }
 
-	public void setTransactionId(Long transactionId) {
-		this.transactionId = transactionId;
-	}
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
+    }
 
-	public Long getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
